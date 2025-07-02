@@ -6,7 +6,7 @@
 /*   By: jade-vla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:40:27 by jade-vla          #+#    #+#             */
-/*   Updated: 2024/10/28 16:48:42 by jade-vla         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:23:59 by jade-vla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <limits.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdint.h>
+# include <stdarg.h>
+
+/******************************************************************************/
+/*                                libft                                       */
+/******************************************************************************/
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -53,5 +59,17 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+/******************************************************************************/
+/*                                printf                                      */
+/******************************************************************************/
+
+int	ft_printf(const char *str, ...);
+int	ft_printf_c(int c);
+int	ft_printf_u(unsigned int n);
+int	ft_printf_s(char *s);
+int	ft_printf_d(int i);
+int	ft_printf_x(unsigned int nr, char up_low, int i);
+int	ft_printf_p(void *address);
 
 #endif
