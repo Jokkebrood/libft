@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jade-vla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 14:46:09 by jade-vla          #+#    #+#             */
-/*   Updated: 2025/07/03 11:45:44 by jade-vla         ###   ########.fr       */
+/*   Created: 2025/07/03 11:39:55 by jade-vla          #+#    #+#             */
+/*   Updated: 2025/07/03 11:44:44 by jade-vla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atol(const char *str)
 {
-	int	i;
-	int	pos_or_neg;
-	int	str_int;
+	int		i;
+	int		pos_or_neg;
+	long	str_int;
 
 	i = 0;
 	str_int = 0;
@@ -39,15 +39,3 @@ int	ft_atoi(const char *str)
 		str_int = -str_int;
 	return (str_int);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-
-int main() {
-
-    printf("Overflowed result: %d\n", ft_atoi("-92233720368547758070"));
-    printf("Overflowed result: %d\n", atoi("-92233720368547758070"));
-    return 0;
-}
-*/

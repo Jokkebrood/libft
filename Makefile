@@ -6,7 +6,7 @@
 #    By: jade-vla <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:38:02 by jade-vla          #+#    #+#              #
-#    Updated: 2025/07/02 15:18:08 by jade-vla         ###   ########.fr        #
+#    Updated: 2025/07/03 16:12:03 by jade-vla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Werror -Wextra
 OBJ_DIR = obj
 LIB_DIR = libft
 PRINT_DIR = ft_printf
+LIB_ADD_DIR = libft_additions
 
 LIB_FILES =		ft_isalpha.c \
 				ft_isdigit.c \
@@ -53,6 +54,9 @@ LIB_FILES =		ft_isalpha.c \
 				ft_putendl_fd.c \
 				ft_putnbr_fd.c
 
+LIB_ADD_FILES =	ft_atol.c \
+				ft_atoi_syntax.c
+
 PRINT_FILES =	ft_printf.c \
 				ft_printf_d.c \
 				ft_printf_p.c \
@@ -63,7 +67,8 @@ PRINT_FILES =	ft_printf.c \
 
 LIB_SRC = $(addprefix $(LIB_DIR)/, $(LIB_FILES))
 PRINT_SRC = $(addprefix $(PRINT_DIR)/, $(PRINT_FILES))
-SRC = $(LIB_SRC) $(PRINT_SRC)
+LIB_ADD_SRC = $(addprefix $(LIB_ADD_DIR)/, $(LIB_ADD_FILES))
+SRC = $(LIB_SRC) $(PRINT_SRC) $(LIB_ADD_SRC)
 
 # Create flat object names in ../obj (e.g., ../obj/ft_strlen.o)
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
@@ -76,13 +81,18 @@ $(NAME): $(OBJ)
 	ar rcs $@ $^
 
 # Compile rule (object filename is flat, source has full path)
+
 $(OBJ_DIR)/%.o: $(LIB_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(PRINT_DIR) -c $< -o $@
 
+$(OBJ_DIR)/%.o: $(LIB_ADD_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(PRINT_DIR) -I$(LIB_ADD_DIR) -c $< -o $@
+
 $(OBJ_DIR)/%.o: $(PRINT_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(PRINT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(PRINT_DIR) -I$(LIB_ADD_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
